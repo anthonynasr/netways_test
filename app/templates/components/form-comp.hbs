@@ -1,0 +1,28 @@
+{{yield}}
+<div class="form container">
+    <form class="form-horizontal">
+        {{#each data as |element|}}
+        <div class="form-group">
+            <label class="control-label col-sm-2">{{element.label}}</label>
+            <div class="col-sm-10">
+            {{#if (is-equal element.type "MultiChoice")}}
+                {{combo-box data=element.choices required=element.required disabled = (if (is-equal element.viewMode 'edit' ) false "disabled") name=element.id tooltip=element.tooltip value=element.value }}
+            {{else}}
+                <input data-toggle="tooltip" data-placement="top" title="{{element.tooltip}}" type={{if (is-equal element.type "integer") "number" "text" }} class="form-control" required={{element.required}} min={{element.minValue}} max={{element.maxValue}}  id="{{element.id}}" name="{{element.id}}" value={{element.value}} readonly={{if (is-equal element.viewMode 'edit' ) false "readonly"}}>
+            {{/if}}
+         </div>
+    </div>
+{{/each}}
+<div class="button-container">
+    {{#each behaviors as |behavior|}}
+        <div class="form-group">        
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type={{if (is-equal behavior.label 'Save') 'submit' ' '}} class="btn {{if (is-equal behavior.label 'Save') 'btn-primary' 'btn-default'}}" onclick={{action (if (is-equal behavior.label 'Save') "save" "cancel")}}>{{behavior.label}}</button>
+            </div>
+        </div>
+    {{/each}}
+    </div>
+ </form>
+</div>
+
+<div class="saveData">{{saveData}}</div>
