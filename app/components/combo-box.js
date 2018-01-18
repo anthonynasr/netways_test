@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
     onInit:function(){
-        var data = JSON.stringify(this.get("data")).replace(/value/g, "id");;
+        var data = JSON.stringify(this.get("data")).replace(/value/g, "id");
         this.set("options",JSON.parse(data));
         Ember.run.schedule("afterRender",this,function() {
           this.send("setData", this.get("value"));

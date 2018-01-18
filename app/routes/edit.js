@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-     model(params) {
+     model() {
         var obj = {
         "properties": [
             {
@@ -69,7 +69,7 @@ export default Ember.Route.extend({
       "label": "Cancel"
     }
   ]
-}
+};
         return obj;
     }
 });
